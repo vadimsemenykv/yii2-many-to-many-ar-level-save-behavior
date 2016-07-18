@@ -1,0 +1,22 @@
+{
+    "name": "vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior",
+    "description": "Behavior for saving many to many relation",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","ManyToMany", "many to many", "save"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vadym Semeniuk",
+            "email": "vadimsemenykv@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "vadymsemenykv\\manyToManyBehavior\\": "src"
+        }
+    }
+}

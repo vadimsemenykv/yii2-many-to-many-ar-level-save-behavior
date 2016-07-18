@@ -102,3 +102,41 @@ class Tag extends ActiveRecord {
     }
 }
 ```
+
+```php
+$tag = new Tag();
+$tag->id = 1;
+$tag->label = 'Tag #1';
+$tag->save();
+
+
+$tag = new Tag();
+$tag->id = 2;
+$tag->label = 'Tag #2';
+$tag->save();
+
+$article = new Article();
+$article->label = 'New article';
+$article->tagIds = [1, 2];
+$article->save();
+
+$tags = $article->tags;
+
+/**
+ *  $tags = [
+ *     0 => object(Tag)
+ *          ...
+ *          private '_attributes' (yii\db\BaseActiveRecord) =>
+ *                  'id' => int 1
+ *                  'label' => string 'Tag #1'
+ *          ... 
+ *     1 => object(Tag)
+ *          ...
+ *          private '_attributes' (yii\db\BaseActiveRecord) =>
+ *                  'id' => int 2
+ *                  'label' => string 'Tag #2'
+ *          ...                
+ *  ]
+ */
+```
+

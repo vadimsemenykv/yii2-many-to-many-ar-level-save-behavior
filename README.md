@@ -57,7 +57,7 @@ CREATE TABLE `article_to_tag` (
 Your code must look like this
 
 ```php
-use adymsemenykv\manyToManyBehavior\ManyToManyArLevelSaveBehavior
+use vadymsemenykv\manyToManyBehavior\ManyToManyArLevelSaveBehavior
 
 /**
  * @ property Tag[] $tags

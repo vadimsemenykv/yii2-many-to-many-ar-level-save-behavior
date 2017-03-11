@@ -139,4 +139,32 @@ $tags = $article->tags;
  *  ]
  */
 ```
-
+Advanced usage
+--------------
+For example, if in table `article_to_tag` in example above present `type_id` column with some additional 
+identifier - config for behavior may be like this:
+````
+public function behaviors()
+{
+    return [
+        'manyToManyBehavior' => [
+            'class' => ManyToManyArLevelSaveBehavior::className(),
+            'relations' => [
+                'tags' => [
+                    'modelClass' => Tag::className(),
+                    'attribute' => 'tagIds',
+                    'pkColumnName' => 'id',
+                    'deleteAllRelatedEntriesBeforeSave' => true,
+                    'extraColumns' => [
+                        'type_id' => ArticleToTag::TYPE_1
+                    ],
+                    'additionalUnlinkCondition' => [
+                        'type_id' => ArticleToTag::TYPE_1,
+                    ]
+                ],
+            ],
+        ],
+    ];
+}
+````
+where `extraColumns` will be used in link() method, and `additionalUnlinkCondition` will be merged with unlink condition.

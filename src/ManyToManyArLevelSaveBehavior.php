@@ -100,16 +100,36 @@ class ManyToManyArLevelSaveBehavior extends Behavior
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function afterSave()
     {
         foreach ($this->relations as $relationKey => $relationValue) {
-            $this->owner->unlinkAll($relationKey, $this->getProperty($relationKey, 'deleteAllRelatedEntriesBeforeSave'));
+            $unlinkCondition = isset($relationValue['additionalUnlinkCondition'])
+                ? $relationValue['additionalUnlinkCondition']
+                : false;
+            if ($unlinkCondition) {
+                $relation = $this->owner->getRelation($relationKey);
+                $viaTable = reset($relation->via->from);
+                $viaLinkColumn = array_keys($relation->via->link)[0];
+                $unlinkCondition = ArrayHelper::merge($unlinkCondition, [$viaLinkColumn => $this->owner->id]);
+                $command = $this->owner->getDb()->createCommand();
+                $command->delete($viaTable, $unlinkCondition)->execute();
+            } else {
+                $this->owner->unlinkAll($relationKey, $this->getProperty($relationKey, 'deleteAllRelatedEntriesBeforeSave'));
+            }
 
             /* @var \yii\db\ActiveRecord $class */
             $class = $this->getProperty($relationKey, 'modelClass');
-            foreach ($this->owner->{$this->getProperty($relationKey, 'attribute')} as $modelId) {
-                $model = $class::findOne($modelId);
-                $this->owner->link($relationKey, $model);
+            $extraColumns = isset($relationValue['extraColumns']) ? $relationValue['extraColumns'] : [];
+            $items = $this->owner->{$this->getProperty($relationKey, 'attribute')};
+
+            if (is_array($items)) {
+                foreach ($items as $modelId) {
+                    $model = $class::findOne($modelId);
+                    $this->owner->link($relationKey, $model, $extraColumns);
+                }
             }
         }
     }

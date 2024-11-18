@@ -18,5 +18,11 @@
         "psr-4": {
             "vadymsemenykv\\manyToManyBehavior\\": "src"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }

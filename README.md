@@ -1,6 +1,5 @@
-[![Total Downloads](https://poser.pugx.org/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior/d/total.png)](https://packagist.org/packages/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)
-[![Latest Stable Version](https://poser.pugx.org/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior/v/stable.png)](https://packagist.org/packages/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)
-[![Dependency Status](https://www.versioneye.com/php/vadymsemeniuk:yii2-many-to-many-ar-level-save-behavior/dev-master/badge?style=flat)](https://www.versioneye.com/php/vadymsemeniuk:yii2-many-to-many-ar-level-save-behavior)
+[![Total Downloads](https://img.shields.io/packagist/dt/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)](https://packagist.org/packages/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)
+[![Latest Stable Version](https://img.shields.io/packagist/v/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)](https://packagist.org/packages/vadymsemeniuk/yii2-many-to-many-ar-level-save-behavior)
 
 Yii2 ManyToMany Active Record Level Behavior
 ============================================
